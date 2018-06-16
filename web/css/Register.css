@@ -1,0 +1,20 @@
+span {
+    font-style: italic;
+    font-size: 16px;
+    color: tomato;
+}
+td {
+    font-size: 20px;
+}
+tr {
+    margin-top: 10px;
+}
+table {
+    width: 60%;
+}
+.lblLogin {
+    font-size: 20px;
+}
+input[type="submit"] {
+    margin-left: 0px;
+}

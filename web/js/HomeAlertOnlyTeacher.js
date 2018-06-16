@@ -1,0 +1,1 @@
+alert("Only teacher can use this function");

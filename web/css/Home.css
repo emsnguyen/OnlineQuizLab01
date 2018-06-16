@@ -1,0 +1,39 @@
+.wrapper {
+    background-color: white;
+    margin: auto;
+    width: 90%;
+    height: 90vh;
+    font-family: Helvetica;
+    font-family: Calibri, Candara, Segoe, "Segoe UI", Optima, Arial, sans-serif;
+}
+.top {
+    margin-top: 40px;
+    height: 30px;
+    background-image: url(../images/top_box.gif);
+    background-size: 90% auto;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.lblLogin {
+    color: #000088;
+    font-size: 28px;
+    font-weight: bold;
+}
+td, .aResgister {
+    color: #416271;
+    font-size: 20px;
+}
+.aResgister {
+    text-decoration: none;
+}
+#loginForm {
+    margin: auto;
+    width: 90%;
+}
+.btnLogin {
+    font-size: 22px;
+}
+input[type="text"], input[type="password"] {
+    width: 250px;
+    height: 21px;
+}

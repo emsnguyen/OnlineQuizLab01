@@ -1,0 +1,19 @@
+.lblTimer {
+    margin-left: 40%;
+}
+#timer {
+    color: red;
+}
+input[type="submit"] {
+    margin-top: 30px;
+    font-size: 20px;
+    margin: 0 75%;
+}
+.main {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+span.opt {
+    color: black;
+    font-size: 17px;
+    font-weight: normal;
+}
