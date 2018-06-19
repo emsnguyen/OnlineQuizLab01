@@ -39,21 +39,18 @@
                             <td></td>
                             <td>
                                 <input type="submit" value="Sign in" class="btnLogin"/>
-                                <a href="Register.jsp" class="aResgister">Register</a>
+                                <a href="register" class="aResgister">Register</a>
                             </td>
                         </tr>
                     </tbody>
                 </table>
                 <c:if test="${error ne null}">
-                    <span>${error}</span>
+                    <span class="error">${error}</span>
                 </c:if>
             </form>
         </div>
         <c:if test="${username eq null}">
             <script src="js/HomeAlertLogin.js" type="text/javascript"></script>
-        </c:if>
-        <c:if test="${limitedAccess ne null}">
-            <script src="js/HomeAlertOnlyTeacher.js" type="text/javascript"></script>
         </c:if>
     </body>
 </html>

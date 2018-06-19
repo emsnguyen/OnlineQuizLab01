@@ -37,3 +37,8 @@ input[type="text"], input[type="password"] {
     width: 250px;
     height: 21px;
 }
+span .error{
+    font-size: 20px;
+    font-style: italic;
+    color: tomato;
+}

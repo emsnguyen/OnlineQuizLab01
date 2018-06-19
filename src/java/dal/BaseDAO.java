@@ -61,7 +61,7 @@ public abstract class BaseDAO {
                 rs.close();
             }
         } catch (Exception ex) {
-            Logger.getLogger(QuizDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BaseDAO.class.getName()).log(Level.SEVERE, null, ex);
             throw ex;
         }
     }

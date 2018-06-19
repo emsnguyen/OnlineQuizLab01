@@ -6,12 +6,14 @@
 package controller;
 
 import dal.QuizDAO;
+import dal.UserDAO;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.Quiz;
+import model.User;
 
 /**
  *
@@ -61,6 +63,11 @@ public class MakeQuizController extends BaseController {
         q.setOptD(optD);
         q.setAnswer(answer);
         q.setDateCreated(new java.util.Date());
+        //set creator ID
+        int creatorID = (int) request.getSession().getAttribute("userID");
+        User u = new User();
+        u.setID(creatorID);
+        q.setCreator(u);
         QuizDAO qDB = new QuizDAO();
         try {
             qDB.insertQuiz(q);

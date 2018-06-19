@@ -21,7 +21,7 @@
             <%@include file="Header.jsp" %>
             <div class="main">
                 <h3 class="lblLogin">Registration Form</h3>
-                <form action="register">
+                <form action="register" method="POST">
                     <table>
                         <tbody>
                             <tr>
@@ -46,8 +46,9 @@
                                 <td>User Type: </td>
                                 <td>
                                     <select name="typeID">
-                                        <option value="1">Student</option>
-                                        <option value="2">Teacher</option>
+                                        <c:forEach items="${types}" var="t">
+                                        <option value="${t.ID}">${t.name}</option>
+                                        </c:forEach>
                                     </select>
                                 </td>
                                 <td>
@@ -65,9 +66,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <c:if test="${error ne null}">
-                                        <span>${error}</span>
-                                    </c:if>
+                                   
                                 </td>
                                 <td>
                                     <input type="submit" value="Register"/>
