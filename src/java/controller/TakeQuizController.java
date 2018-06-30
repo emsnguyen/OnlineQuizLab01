@@ -19,37 +19,7 @@ public class TakeQuizController extends BaseController {
     protected void handleGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-            response.setCharacterEncoding("UTF-8");
-            request.setCharacterEncoding("UTF-8");
-            HttpSession session = request.getSession(true);
-            String sNoofQuestions = request.getParameter("chosenQuizzes");
-            if (session.getAttribute("mark") != null) {
-                session.removeAttribute("mark");
-            }
-            if (sNoofQuestions == null) {
-                getServletContext().getRequestDispatcher("/WEB-INF/TakeQuiz.jsp").forward(request, response);
-                return;
-            }
-            int noOfQuestions = Integer.parseInt(sNoofQuestions);
-            QuizDAO qDB = new QuizDAO();
-
-            //get list of quizzes from db
-            ArrayList<Quiz> quizzes;
-            int availableQuestions = qDB.countRecords();
-            if (noOfQuestions > 0 && noOfQuestions <= availableQuestions) {
-
-                request.setAttribute("currentQuiz", 0);
-                session.setAttribute("mark", 0);
-                //save all the quizzes to session so no need to access db everytime
-                quizzes = qDB.getAll(noOfQuestions);
-                session.setAttribute("quizzes", quizzes);
-                request.setAttribute("q", quizzes.get(0));
-                getServletContext().getRequestDispatcher("/WEB-INF/DoQuiz.jsp").forward(request, response);
-            } else {
-                //return to old page without noOfQuestions to ask user to choose again
-                request.setAttribute("error", "You must choose a number between 0 and " + availableQuestions);
-                getServletContext().getRequestDispatcher("/WEB-INF/TakeQuiz.jsp").forward(request, response);
-            }
+            getServletContext().getRequestDispatcher("/WEB-INF/TakeQuiz.jsp").forward(request, response);
         } catch (Exception ex) {
             Logger.getLogger(TakeQuizController.class.getName()).log(Level.SEVERE, null, ex);
             getServletContext().getRequestDispatcher("/ErrorPage.jsp").forward(request, response);
@@ -62,36 +32,31 @@ public class TakeQuizController extends BaseController {
         try {
             response.setCharacterEncoding("UTF-8");
             request.setCharacterEncoding("UTF-8");
-            String currentQuiz = request.getParameter("currentQuiz");
-            int currentQuizIndex = Integer.parseInt(currentQuiz);
-            String result = request.getParameter("result");
             HttpSession session = request.getSession();
-            ArrayList<Quiz> quizzes = (ArrayList<Quiz>) session.getAttribute("quizzes");
-            int mark = Integer.parseInt(session.getAttribute("mark").toString());
-            String answer = quizzes.get(currentQuizIndex).getAnswer();
-            if (result.equals(answer)) {
-                //if user got a correct answer, add one point to mark
-                mark = mark + 1;
-                session.setAttribute("mark", mark);
+            QuizDAO qDB = new QuizDAO();
+            int availableQuestions = qDB.countRecords();
+            int noOfQuestions;
+            String sNoofQuestions = request.getParameter("chosenQuizzes");
+            if (sNoofQuestions == null) {
+                request.setAttribute("error", "No of questions is null");
+                getServletContext().getRequestDispatcher("/WEB-INF/TakeQuiz.jsp").forward(request, response);
+                return;
             }
-            if (currentQuizIndex == quizzes.size() - 1) {
-                //user answer his chosen number of questions, show result
-                float fResult = ShowResult.getResult(mark, currentQuizIndex + 1);
-                String sResult = ShowResult.getStringResult(fResult);
-                
-                //save result to db
-                int userID = (int) session.getAttribute("userID");
-                new UserDAO().saveTestResult(fResult, userID);
-                request.setAttribute("fResult", String.format("%.2f", fResult));
-                request.setAttribute("sResult", sResult);
-                getServletContext().getRequestDispatcher("/WEB-INF/TestResult.jsp").forward(request, response);
-
+            try {
+                noOfQuestions = Integer.parseInt(sNoofQuestions);
+            } catch (NumberFormatException ex) {
+                request.setAttribute("error", "You must enter a valid integer");
+                Logger.getLogger(TakeQuizController.class.getName()).log(Level.SEVERE, null, ex);
+                getServletContext().getRequestDispatcher("/WEB-INF/TakeQuiz.jsp").forward(request, response);
+                return;
+            }
+            if (noOfQuestions >= 0 && noOfQuestions <= availableQuestions) {
+                session.setAttribute("noOfQuestions", noOfQuestions);
+                response.sendRedirect("doquiz");
             } else {
-                //fetch next question
-                currentQuizIndex++;
-                request.setAttribute("currentQuiz", currentQuizIndex);
-                request.setAttribute("q", quizzes.get(currentQuizIndex));
-                getServletContext().getRequestDispatcher("/WEB-INF/DoQuiz.jsp").forward(request, response);
+                //return to old page without noOfQuestions to ask user to choose again
+                request.setAttribute("error", "You must choose a number between 0 and " + availableQuestions);
+                getServletContext().getRequestDispatcher("/WEB-INF/TakeQuiz.jsp").forward(request, response);
             }
         } catch (Exception ex) {
             Logger.getLogger(TakeQuizController.class.getName()).log(Level.SEVERE, null, ex);

@@ -20,8 +20,8 @@
         <div class="wrapper">
             <%@include file="Header.jsp" %>
             <div class="main">
-                <div>
-                    Your score <span>${fResult} (${fResult*10}%) - ${sResult}</span>
+                <div class="score">
+                    Your score ${fResult}<span class="blue-color"> (${percentResult}%) - ${sResult}</span>
                 </div>
                 <div>
                     Take another test

@@ -1,9 +1,12 @@
 .main {
     font-size: 20px;
 }
-div {
-    margin-top: 40px;
+.score {
+    margin-bottom: 40px;
 }
 button {
     font-size: 20px;
+}
+.blue-color {
+    color: #000088;
 }

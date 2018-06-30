@@ -1,10 +1,8 @@
 .header a {
-    padding-left: 50px;
+    padding-left: 40px;
     font-weight: bold;
-    color: brown;
-    font-size: 28px;
+    font-size: 20px;
     color: #62584d;
-    margin: 10px;
     text-decoration: none;
     font-family: Calibri, Candara, Segoe, "Segoe UI", Optima, Arial, sans-serif;
 }
@@ -12,12 +10,10 @@ body {
     background-image: url("../images/bg.jpg");
 }
 .header {
-    border-radius: 20px;
-    display: grid;
-    grid-template-columns: 150px 1fr 1fr 1fr 1fr;
+    height: 50px;
     background-image: url(../images/menu_bg.gif);
     background-repeat: no-repeat;
-    background-size: 95% auto;
     margin: auto;
-    margin-left: 30px;
+    margin-left: 10px;
+    padding-top: 10px;
 }

@@ -24,31 +24,47 @@
                         <tr>
                             <td>Question:  </td>
                             <td>
-                                <textarea class="txtQuestion" name="content" required="required"></textarea>
+                                <textarea class="txtQuestion" name="content" 
+                                          required="required">${content}</textarea>
+                            </td>
+                            <td>
+                                <span class="error">${errorContent}</span>
                             </td>
                         </tr>
                         <tr>
                             <td>Option 1: </td>
                             <td>
-                                <textarea name="optA" required="required"></textarea>
+                                <textarea name="optA" required="required">${optA}</textarea>
+                            </td>
+                            <td>
+                                <span class="error">${errorOptA}</span>
                             </td>
                         </tr>
                         <tr>
                             <td>Option 2: </td>
                             <td>
-                                <textarea name="optB" required="required"></textarea>
+                                <textarea name="optB" required="required">${optB}</textarea>
+                            </td>
+                            <td>
+                                <span class="error">${errorOptB}</span>
                             </td>
                         </tr>
                         <tr>
                             <td>Option 3: </td>
                             <td>
-                                <textarea name="optC"></textarea>
+                                <textarea name="optC" required="required">${optC}</textarea>
+                            </td>
+                            <td>
+                                <span class="error">${errorOptC}</span>
                             </td>
                         </tr>
                         <tr>
                             <td>Option 4: </td>
                             <td>
-                                <textarea name="optD"></textarea>
+                                <textarea name="optD" required="required">${optD}</textarea>
+                            </td>
+                            <td>
+                                <span class="error">${errorOptD}</span>
                             </td>
                         </tr>
                     </table>
@@ -59,6 +75,7 @@
                         <input type="checkbox" id="opt3" value="3" name="cb3">Option 3
                         <input type="checkbox" id="opt4" value="4" name="cb4">Option 4
                     </div>
+                    <span class="error">${errorCorrectAnswer}</span>
                     <div>
                         <input type="submit" value="Save"/>
                     </div>

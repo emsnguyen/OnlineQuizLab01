@@ -23,7 +23,7 @@
             <%@include  file="Header.jsp" %>
             <div class="main">
                 <p>Welcome <span>${sessionScope.username}</span></p>
-                <form action="takequiz" method="POST">
+                <form action="doquiz" method="POST">
                     <p class="lblTimer">Time remaining <span id="timer"></span></p>
                     <input type="hidden" id="currentQuiz" name="currentQuiz" value="${currentQuiz}"/>
                     <p>${q.content}</p>

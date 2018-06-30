@@ -2,17 +2,15 @@
     height: 9em;
 }
 textarea {
-    width: 45em;
+    width: 35em;
     height: 6em;
-}
-.main {
-    margin-left: 20%;
 }
 td {
     vertical-align: top;
 }
 .wrapper {
     height: 100%;
+    min-height: 800px;
 }
 table {
     width: 100%;
@@ -30,5 +28,5 @@ table {
 input[type="submit"] {
     margin-top: 50px;
     font-size: 20px;
-    margin: 0 13%;
+    margin: 0 15%;
 }

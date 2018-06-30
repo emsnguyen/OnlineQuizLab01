@@ -10,44 +10,40 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Manage Quiz</title>
+        <title>Make Quiz Success</title>
         <link href="${pageContext.servletContext.contextPath}/css/Home.css" rel="stylesheet" type="text/css"/>
         <link href="${pageContext.servletContext.contextPath}/css/TakeQuiz.css" rel="stylesheet" type="text/css"/>
         <link href="${pageContext.servletContext.contextPath}/css/ManageQuiz.css" rel="stylesheet" type="text/css"/>
+        <link href="${pageContext.servletContext.contextPath}/css/MakeQuizSuccess.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
         <div class="top"></div>
         <div class="wrapper">
             <%@include file="Header.jsp" %>
             <div class="main">
-                <table cellpadding="5">
+                <h3>A new quiz has been successfully created!</h3>
+                <table border="1">
                     <tr>
-                        <td class="firstTd">
-                            Number of questions: <span>${totalRecords}</span>
-                        </td>
-                        <td></td>
+                        <td>Content</td>
+                        <td>${q.content}</td>
                     </tr>
                     <tr>
-                        <td>
-                            <span>Question</span>
-                        <td>
-                            <span>DateCreated</span>
-                        </td>
+                        <td>Option 1</td>
+                        <td>${q.optA}</td>
                     </tr>
-                    <c:forEach items="${quizzes}" var="q">
-                        <tr>
-                            <td>
-                                ${q.content} 
-                            </td>
-                            <td>
-                                <fmt:formatDate value="${q.dateCreated}" pattern="dd-MMM-yyyy"/>
-                            </td>
-                        </tr>
-                    </c:forEach>
+                    <tr>
+                        <td>Option 2</td>
+                        <td>${q.optB}</td>
+                    </tr>
+                    <tr>
+                        <td>Option 3</td>
+                        <td>${q.optC}</td>
+                    </tr>
+                    <tr>
+                        <td>Option 4</td>
+                        <td>${q.optD}</td>
+                    </tr>
                 </table>
-                <div class="footer">
-                    ${paging}
-                </div>
             </div>
         </div>
     </body>

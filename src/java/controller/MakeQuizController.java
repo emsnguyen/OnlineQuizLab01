@@ -6,8 +6,8 @@
 package controller;
 
 import dal.QuizDAO;
-import dal.UserDAO;
 import java.io.IOException;
+import java.util.logging.Level;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -44,6 +44,36 @@ public class MakeQuizController extends BaseController {
         String optB = request.getParameter("optB");
         String optC = request.getParameter("optC");
         String optD = request.getParameter("optD");
+        request.setAttribute("optA", optA);
+        request.setAttribute("optB", optB);
+        request.setAttribute("optC", optC);
+        request.setAttribute("optD", optD);
+        request.setAttribute("content", content);
+        if (content == null) {
+            request.setAttribute("errorContent", "Content cannot be null");
+            getServletContext().getRequestDispatcher("/WEB-INF/MakeQuiz.jsp").forward(request, response);
+            return;
+        }
+        if (optA == null) {
+            request.setAttribute("errorOptA", "Option 1 cannot be null");
+            getServletContext().getRequestDispatcher("/WEB-INF/MakeQuiz.jsp").forward(request, response);
+            return;
+        }
+        if (optB == null) {
+            request.setAttribute("errorOptB", "Option 2 cannot be null");
+            getServletContext().getRequestDispatcher("/WEB-INF/MakeQuiz.jsp").forward(request, response);
+            return;
+        }
+        if (optC == null) {
+            request.setAttribute("errorOptC", "Option 3 cannot be null");
+            getServletContext().getRequestDispatcher("/WEB-INF/MakeQuiz.jsp").forward(request, response);
+            return;
+        }
+        if (optD == null) {
+            request.setAttribute("errorOptD", "Option 4 cannot be null");
+            getServletContext().getRequestDispatcher("/WEB-INF/MakeQuiz.jsp").forward(request, response);
+            return;
+        }
         String answer = "";
         if (request.getParameter("cb1") != null) {
             answer = optA;
@@ -51,8 +81,13 @@ public class MakeQuizController extends BaseController {
             answer = optB;
         } else if (request.getParameter("cb3") != null) {
             answer = optC;
-        } else {
+        } else if (request.getParameter("cb4") != null) {
             answer = optD;
+        }
+        if (answer.equals("")) {
+            request.setAttribute("errorCorrectAnswer", "Please choose at least one answer");
+            getServletContext().getRequestDispatcher("/WEB-INF/MakeQuiz.jsp").forward(request, response);
+            return;
         }
         //insert new quiz to db
         Quiz q = new Quiz();
@@ -71,18 +106,15 @@ public class MakeQuizController extends BaseController {
         QuizDAO qDB = new QuizDAO();
         try {
             qDB.insertQuiz(q);
-            //back to Home
-            getServletContext().getRequestDispatcher("/WEB-INF/Home.jsp").forward(request, response);
+            //fw to makequizsuccess page
+            request.setAttribute("q", q);
+            getServletContext().getRequestDispatcher("/WEB-INF/MakeQuizSuccess.jsp").forward(request, response);
         } catch (Exception ex) {
-            getServletContext().getRequestDispatcher("/WEB-INF/ErrorPage.jsp").forward(request, response);
+            java.util.logging.Logger.getLogger(MakeQuizController.class.getName()).log(Level.SEVERE, null, ex);
+            getServletContext().getRequestDispatcher("/ErrorPage.jsp").forward(request, response);
         }
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
     @Override
     public String getServletInfo() {
         return "Short description";

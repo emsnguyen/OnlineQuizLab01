@@ -36,7 +36,7 @@
                             <tr>
                                 <td>Password: </td>
                                 <td>
-                                    <input type="password" value="${password}" name="password" required="required"/>
+                                    <input type="password" name="password" required="required"/>
                                 </td>
                                 <td>
                                     <span>${invalidPassword}</span>

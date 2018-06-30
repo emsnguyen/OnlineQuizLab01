@@ -12,11 +12,16 @@ p {
     font-family: Calibri, Candara, Segoe, "Segoe UI", Optima, Arial, sans-serif;
     padding-top: 10px;
 }
-span {
-    color: #0000ff;
-}
 .main {
     margin-top: 30px;
     margin-left: 50px;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.error {
+    color: tomato;
+    font-size: 18px;
+    font-style: italic;
+}
+.blue-color {
+    color: #000088;
 }

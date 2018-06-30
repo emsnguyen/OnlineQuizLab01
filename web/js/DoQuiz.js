@@ -1,4 +1,4 @@
-var timeLeft = 10;
+var timeLeft = 60;
 var timer = document.getElementById("timer");
 timer.value = timeLeft;
 var result = document.getElementById("result");
@@ -6,9 +6,11 @@ result.value = "";
 var options = document.querySelectorAll(".options");
 function countdown() {
     var x = setInterval(function () {
+        var y = setInterval(function() {
+            setResult();
+        },10);
         timer.innerHTML = timeLeft;
         timeLeft--;
-        setResult();
         if (timeLeft < 0) {
             clearInterval(x);
             timer.innerHTML = "Time out";
@@ -17,10 +19,10 @@ function countdown() {
     }, 1000);
 }
 function setResult() {
+    result.value = "";
     for (var i = 0; i < options.length; i++) {
         if (options[i].checked) {
-            console.log("options "+ (i+1) + " checked");
-            result.value = options[i].value;
+            result.value += options[i].value;
         }
     }
     if (result.value === "") {

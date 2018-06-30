@@ -28,11 +28,17 @@
                             <td>
                                 <input type="text" value="${username}" name="username" required="required"/>
                             </td>
+                            <td>
+                                <span class="error">${invalidUsername}</span>
+                            </td>
                         </tr>
                         <tr>
                             <td>Password: </td>
                             <td>
-                                <input type="password" value="${password}" name="password" required="required"/>
+                                <input type="password" name="password" required="required"/>
+                            </td>
+                            <td>
+                                <span class="error">${invalidPassword}</span>
                             </td>
                         </tr>
                         <tr>
@@ -44,13 +50,7 @@
                         </tr>
                     </tbody>
                 </table>
-                <c:if test="${error ne null}">
-                    <span class="error">${error}</span>
-                </c:if>
             </form>
         </div>
-        <c:if test="${username eq null}">
-            <script src="js/HomeAlertLogin.js" type="text/javascript"></script>
-        </c:if>
     </body>
 </html>
